@@ -12,3 +12,8 @@
     background-color: #9b775c;
 }
 
+
+.menu-btn.active{
+    background-color: #AC88A4;
+}
+

@@ -3,6 +3,13 @@ import { useDispatch } from 'react-redux';
 import { saveAll } from "../../actions/userData";
 import { changeScreen } from '../../actions/screen';
 
+const INPUT_TYPE = {
+    FIRST: 'firstName',
+    LAST: 'lastName',
+    PHONE: 'phone',
+    ADDRESS: 'address'
+}
+
 export default function Signup(props) {
     const [step, setStep] = useState(1);
     const [confirm, setConfirm] = useState(false);
@@ -14,24 +21,29 @@ export default function Signup(props) {
 
     const dispatch = useDispatch();
 
-    function displayFields() {
-        switch (step) {
-            case 1:
-                return <Step1
-                    firstName={firstName} setFirstName={setFirstName}
-                    lastName={lastName} setLastName={setLastName} />
-            case 2:
-                return <Step2
-                    phone={phone} setPhone={setPhone}
-                    address={address} setAddress={setAddress} />
-            case 3:
-                return <Step3
-                    firstName={firstName} lastName={lastName}
-                    phone={phone} address={address}
-                    confirm={confirm} setConfirm={setConfirm}
-                />
+    function validate(type, val) {
+        switch (type) {
+            case INPUT_TYPE.FIRST:
+            case INPUT_TYPE.LAST:
+                {
+                    if (/^[a-zA-Z]+$/.test(val) && val.length > 1)
+                        return true;
+                    return false;
+                }
+            case INPUT_TYPE.PHONE:
+                {
+                    if (/^\+?(972|0)(\-)?0?(([23489]{1}\d{7})|[5]{1}\d{8})$/.test(val))
+                        return true;
+                    return false;
+                }
+            case INPUT_TYPE.ADDRESS:
+                {
+                    if (val.length > 2)
+                    return true;
+                return false;
+                }
             default:
-                return;
+                return true;
         }
     }
 
@@ -46,9 +58,47 @@ export default function Signup(props) {
         if (!Object.values(userData).every(value => value) || !confirm) {
             alert("missing some field");
         }
-        else{
+        else {
             dispatch(saveAll(userData));
             dispatch(changeScreen('shopping'));
+        }
+    }
+
+    function handleNext() {
+        switch (step) {
+            case 1:
+                if (!validate(INPUT_TYPE.FIRST, firstName) || !validate(INPUT_TYPE.LAST, lastName)) {
+                    alert("one of the field is not valid")
+                    return;
+                }
+                break
+            case 2:
+                if (!validate(INPUT_TYPE.PHONE, phone) || !validate(INPUT_TYPE.ADDRESS, address)) {
+                    alert("one of the field is not valid");
+                    return;
+                }
+                break
+            default:
+                break;
+        }
+        setStep(step + 1)
+    }
+
+    function displayFields() {
+        switch (step) {
+            case 1:
+                return <Step1 firstName={firstName} setFirstName={setFirstName}
+                    lastName={lastName} setLastName={setLastName} />
+            case 2:
+                return <Step2 phone={phone} setPhone={setPhone}
+                    address={address} setAddress={setAddress} />
+            case 3:
+                return <Step3 firstName={firstName} lastName={lastName}
+                    phone={phone} address={address}
+                    confirm={confirm} setConfirm={setConfirm}
+                />
+            default:
+                return;
         }
     }
 
@@ -57,7 +107,7 @@ export default function Signup(props) {
             <h1>Sign up</h1>
             {displayFields()}
             {step > 1 && <button onClick={() => setStep(step - 1)}>back</button>}
-            {step < 3 && <button onClick={() => setStep(step + 1)}>next</button>}
+            {step < 3 && <button onClick={() => handleNext()}>next</button>}
             {step == 3 && <button onClick={save}>save</button>}
         </div>
     );
