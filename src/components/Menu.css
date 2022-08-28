@@ -1,5 +1,14 @@
 .menu-con {
-
     background-color: #E8B187;
     flex:1;
 }
+
+.menu-btn{
+    background-color: #ea9c60;
+    border: 0;
+}
+
+.menu-btn.disabled{
+    background-color: #9b775c;
+}
+

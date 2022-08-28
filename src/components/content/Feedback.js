@@ -1,10 +1,17 @@
+import { useDispatch } from 'react-redux';
+import { deleteAll } from "../../actions/userData";
+import { changeScreen } from '../../actions/screen';
 
+export default function Feedback() {
+    const dispatch = useDispatch();
 
-export default function Feedback(props) {
-    
+    function reset(){
+        dispatch(deleteAll());
+        dispatch(changeScreen('signup'));
+    }
     return (
         <div className="feedback-con">
-           <h1>Feedback</h1>
+            <button onClick={reset}>Reset</button>
         </div>
     );
 }

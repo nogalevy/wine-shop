@@ -3,10 +3,10 @@ export const saveAll = (obj) => {
         type: 'save',
         payload: obj
     }
-};
+}
 
 export const deleteAll = () => {
     return {
-        type: 'delete',
+        type: 'delete'
     }
 }

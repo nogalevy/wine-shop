@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { saveAll } from "../../actions/userData";
-import {changeScreen} from '../../actions/screen';
+import { changeScreen } from '../../actions/screen';
 
 export default function Signup(props) {
     const [step, setStep] = useState(1);
@@ -12,7 +12,6 @@ export default function Signup(props) {
     const [phone, setPhone] = useState('');
     const [address, setAddress] = useState('');
 
-    const userData = useSelector(state => state.userData);
     const dispatch = useDispatch();
 
     function displayFields() {
@@ -44,11 +43,13 @@ export default function Signup(props) {
             address,
             signin: true
         }
-        if (!Object.values(userData).every(value => value)) {
+        if (!Object.values(userData).every(value => value) || !confirm) {
             alert("missing some field");
         }
-        dispatch(saveAll(userData));
-        dispatch(changeScreen('shopping'))
+        else{
+            dispatch(saveAll(userData));
+            dispatch(changeScreen('shopping'));
+        }
     }
 
     return (
