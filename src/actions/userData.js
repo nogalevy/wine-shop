@@ -1,6 +1,12 @@
-export const updateFirstName = (type, value) => {
+export const saveAll = (obj) => {
     return {
-        type,
-        payload: value
+        type: 'save',
+        payload: obj
+    }
+};
+
+export const deleteAll = () => {
+    return {
+        type: 'delete',
     }
 }

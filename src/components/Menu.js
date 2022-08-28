@@ -14,6 +14,7 @@ export default function Menu(props) {
 
     const dispatch = useDispatch();
     return (
+        // TODO: when click on disabled btn - alert the user need to signup!!
         <div className="menu-con">
             <button disabled={IS_SIGNIN} onClick={() => dispatch(changeScreen('signup'))}>signup</button>
             <button disabled={!IS_SIGNIN} onClick={() => dispatch(changeScreen('shopping'))}>start shopping</button>

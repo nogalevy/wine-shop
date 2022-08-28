@@ -1,4 +1,4 @@
-const initalState = {
+let initalState = {
     firstName: '',
     lastName: '',
     phone: 0,
@@ -9,12 +9,11 @@ const initalState = {
 
 const userDataReducer = (state = initalState, action) => {
     switch (action.type) {
-        case 'firstname':
-            return state = {...state , firstName: action.payload};
-        case 'lastname':
-            return state = {...state , lastName: action.payload};
-        case 'phone':
-            return state = {...state , phone: action.payload};
+        case 'save':
+            console.log(action)
+            return state = {...action.payload};
+        case 'delete':
+            return state = {...initalState}
         default:
             return state;
     }
