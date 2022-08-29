@@ -21,7 +21,8 @@ export default function Signup() {
     const [address, setAddress] = useState('');
 
     const dispatch = useDispatch(); //Redux
-
+    const phoneRegex = /^(?:(?:(\+?972|\(\+?972\)|\+?\(972\))(?:\s|\.|-)?([1-9]\d?))|(0[23489]{1})|(0[57]{1}[0-9]))(?:\s|\.|-)?([^0\D]{1}\d{2}(?:\s|\.|-)?\d{4})$/
+    
     function validate(type, val) {
         let isValid = false
         switch (type) {
@@ -30,7 +31,7 @@ export default function Signup() {
                 if (/^[\D/\s/\-]+$/.test(val) && val.length > 1) isValid = true;
                 break;
             case INPUT_TYPE.PHONE:
-                if (/^\+?(972|0)(\-)?0?(([23489]{1}\d{7})|[5]{1}\d{8})$/.test(val)) isValid = true;
+                if (phoneRegex.test(val)) isValid = true;
                 break;
             case INPUT_TYPE.ADDRESS:
                 if (val.length > 2) isValid = true;
