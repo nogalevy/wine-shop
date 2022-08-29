@@ -1,7 +1,7 @@
 let initalState = {
     firstName: '',
     lastName: '',
-    phone: 0,
+    phone: '',
     address: '',
     signin: false
 }

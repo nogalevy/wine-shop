@@ -1,0 +1,19 @@
+.feedback-con {
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+    display: flex;
+}
+
+.reset {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #f7f1ee;
+    cursor: pointer;
+}
+
+
+.reset:hover {
+    background-color: #efe4dc;
+}

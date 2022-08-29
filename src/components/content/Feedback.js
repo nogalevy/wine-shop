@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { deleteAll } from "../../actions/userData";
 import { changeScreen } from '../../actions/screen';
-
+import './Feedback.css'
 export default function Feedback() {
     const dispatch = useDispatch();
 
@@ -11,7 +11,7 @@ export default function Feedback() {
     }
     return (
         <div className="feedback-con">
-            <button onClick={reset}>Reset</button>
+            <button className='reset' onClick={reset}>Reset</button>
         </div>
     );
 }

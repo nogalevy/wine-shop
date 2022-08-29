@@ -1,11 +1,19 @@
 .header-con {
     /* width: 100vw; */
-    background-color: #4C2C2E;
-    color: #E8B187;
+    background-color: #573c28;
+    color: #efe4dc;
     display: flex;
     flex: 1 1;
     justify-content: space-between;
     align-items: center;
+    padding: 0 3vw;
 }
 
-/* .logo */
+.header-con .title {
+    font-family: auto;
+}
+
+.header-con .logo {
+    cursor: pointer;
+    width: 3em;
+}
