@@ -3,26 +3,17 @@ import Header from './components/Header';
 import Menu from './components/Menu';
 import Content from './components/Content';
 import { useState } from 'react';
+import {SCREEN} from './consts/screensConst'
 
-const SCREEN_TYPE = {
-  signup : "SIGNUP",
-  shopping : "SHOPPING",
-  feedback : "FEEDBACK"
-}
 function App() {
-  const [screen, setScreen] = useState(SCREEN_TYPE.signup);
-
-  function changeScreen(type){
-    setScreen(SCREEN_TYPE[type]);
-  }
 
   return (
     <div className="App">
-      <img className='bg' src="bg.jpg" width="100%"/>
+      <img alt='wine-background-image' className='bg' src="bg.jpg" width="100%"/>
       <Header />
       <div className='menu-content'>
-        <Menu changeScreen={(type)=>changeScreen(type)} screen={screen}/>
-        <Content screen={screen}/>
+        <Menu />
+        <Content/>
       </div>
     </div>
   );

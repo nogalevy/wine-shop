@@ -1,5 +1,4 @@
-
-// left side contain 3 buttons 
+// left side, contain 3 buttons 
 // 1. singup 
 // 2. start shopping
 // 3. feedback
@@ -7,8 +6,9 @@
 import './Menu.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeScreen } from '../actions/screen';
+import {SCREEN} from '../consts/screensConst'
 
-export default function Menu(props) {
+export default function Menu() {
     const screen = useSelector(state => state.screen);
     const userData = useSelector(state => state.userData);
     const IS_SIGNIN = userData.signin;
@@ -17,20 +17,17 @@ export default function Menu(props) {
     return (
         <div className="menu-con">
             <button
-                className={`menu-btn ${screen == "SIGNUP" && "active"}`}
-                // className={`menu-btn ${IS_SIGNIN && "disabled"}`}
-                onClick={IS_SIGNIN ? ()=> alert('you already signed in') : () => dispatch(changeScreen('signup'))}>
-                signup</button>
+                className={`menu-btn ${screen == SCREEN.SIGNUP && "active"}`}
+                onClick={IS_SIGNIN ? ()=> alert('You have already signed in') : () => dispatch(changeScreen(SCREEN.SIGNUP))}>
+                Signup</button>
             <button
-                className={`menu-btn ${screen == "SHOPPING" && "active"}`}
-                onClick={!IS_SIGNIN ? () => alert('you need to signup first') : () => dispatch(changeScreen('shopping'))}>
-                start shopping</button>
-
-
+                className={`menu-btn ${screen == SCREEN.SHOPPING && "active"}`}
+                onClick={!IS_SIGNIN ? () => alert('Please sign up first') : () => dispatch(changeScreen(SCREEN.SHOPPING))}>
+                Start Shopping</button>
             <button
-                className={`menu-btn ${screen == "FEEDBACK" && "active"}`}
-                onClick={!IS_SIGNIN ? () => alert('you need to signup first') : () => dispatch(changeScreen('feedback'))}>
-                feedback</button>
+                className={`menu-btn ${screen == SCREEN.FEEDBACK && "active"}`}
+                onClick={!IS_SIGNIN ? () => alert('Please sign up first') : () => dispatch(changeScreen(SCREEN.FEEDBACK))}>
+                Feedback</button>
         </div>
     );
 }

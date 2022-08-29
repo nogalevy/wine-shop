@@ -6,6 +6,7 @@
     border-radius: 5px;
 }
 
+/* inputs */
 .input-con{
     width: fit-content;
     margin: auto;
@@ -21,7 +22,7 @@
     text-align: left;
 }
 
-
+/* form buttons */
 .back, .next, .save{
     cursor: pointer;
     border: none;
@@ -36,7 +37,6 @@
     background-color: #abbab9 ;
     color: #463020;
 }
-
 
 /* PROGRESS BAR */
 .progress-bar{
@@ -59,13 +59,12 @@
 .circle.curr-page{
     background-color: #667a7f; 
 }
-.circle.past-page{
-    background-color: #667a7f;
-}
+
 .circle.next-page{
     background-color: #b8c3c6;
 }
 
+/* summary step */
 .summary p{
     display: flex;
     flex-direction: row;

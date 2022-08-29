@@ -1,5 +1,5 @@
 .feedback-con {
-    margin-top: 10px ;
+    margin-top: 10px;
 }
 
 .reset {
@@ -9,7 +9,6 @@
     background-color: #f7f1ee;
     cursor: pointer;
 }
-
 
 .reset:hover {
     background-color: #efe4dc;

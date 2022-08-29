@@ -1,5 +1,4 @@
 .header-con {
-    /* width: 100vw; */
     background-color: #0e0d0bdd;
     color: #efe4dc;
     display: flex;
@@ -16,10 +15,5 @@
 
 .header-con .logo {
     cursor: pointer;
-    opacity: 100%;
     width: 3em;
-}
-
-.header-con .hello{
-    opacity: 100%;
 }

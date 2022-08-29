@@ -1,0 +1,5 @@
+export const SCREEN = {
+    SIGNUP: 'SIGNUP',
+    SHOPPING: 'SHOPPING',
+    FEEDBACK: 'FEEDBACK'
+}

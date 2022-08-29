@@ -1,14 +1,8 @@
-const screenReducer = (state = 'SIGNUP', action) => {
-    switch (action.type) {
-        case 'signup':
-            return state = 'SIGNUP';
-        case 'shopping':
-            return state = 'SHOPPING';
-        case 'feedback':
-            return state = 'FEEDBACK';
-        default:
-            return state;
-    }
+import { SCREEN } from "../consts/screensConst";
+
+//update the state to current screen
+const screenReducer = (state = SCREEN.SIGNUP, action) => {
+    return state = SCREEN[action.type] || SCREEN.SIGNUP;
 }
 
 export default screenReducer;
