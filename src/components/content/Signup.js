@@ -12,83 +12,66 @@ const INPUT_TYPE = {
 }
 const NUM_OP_PAGES = 3;
 
-export default function Signup(props) {
-    const [step, setStep] = useState(1);
-    const [confirm, setConfirm] = useState(false);
-
+export default function Signup() {
+    const [step, setStep] = useState(1); //form wizard current step
+    const [confirm, setConfirm] = useState(false); //is form confirmed
     const [firstName, setFirstName] = useState('noa');
     const [lastName, setLastName] = useState('cohen');
     const [phone, setPhone] = useState('0547773445');
     const [address, setAddress] = useState('here');
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch(); //Redux
 
     function validate(type, val) {
+        let isValid = false
         switch (type) {
             case INPUT_TYPE.FIRST:
             case INPUT_TYPE.LAST:
-                {
-                    if (/^[a-zA-Z]+$/.test(val) && val.length > 1)
-                        return true;
-                    return false;
-                }
+                if (/^[\D/\s/\-]+$/.test(val) && val.length > 1) isValid = true;
+                break;
             case INPUT_TYPE.PHONE:
-                {
-                    if (/^\+?(972|0)(\-)?0?(([23489]{1}\d{7})|[5]{1}\d{8})$/.test(val))
-                        return true;
-                    return false;
-                }
+                if (/^\+?(972|0)(\-)?0?(([23489]{1}\d{7})|[5]{1}\d{8})$/.test(val)) isValid = true;
+                break;
             case INPUT_TYPE.ADDRESS:
-                {
-                    if (val.length > 2)
-                        return true;
-                    return false;
-                }
+                if (val.length > 2) isValid = true;
+                break;
             default:
-                return true;
+                isValid = true;
         }
+        return isValid;
     }
 
+    //save user data in redux (if confirmed) 
     function save() {
-        let userData = {
-            firstName,
-            lastName,
-            phone,
-            address,
-            signin: true
-        }
-        if (!Object.values(userData).every(value => value) || !confirm) {
-            alert("missing some field");
-        }
-        else {
-            dispatch(saveAll(userData));
-            dispatch(changeScreen('shopping'));
-        }
+        let userData = { firstName, lastName, phone, address, signin: true }
+        if (!confirm) return alert("missing some field"); //check if confirm the details
+        dispatch(saveAll(userData));
+        dispatch(changeScreen('shopping'));
     }
 
+    //handle next - when final step = save all
     function handleNext() {
-        if (step == NUM_OP_PAGES) {
-            return save();
-        }
+        if (step == NUM_OP_PAGES) return save();
         switch (step) {
             case 1:
                 if (!validate(INPUT_TYPE.FIRST, firstName) || !validate(INPUT_TYPE.LAST, lastName)) {
-                    alert("one of the field is not valid")
+                    alert("one of the field is not valid");
                     return;
                 }
-                break
+                break;
             case 2:
                 if (!validate(INPUT_TYPE.PHONE, phone) || !validate(INPUT_TYPE.ADDRESS, address)) {
                     alert("one of the field is not valid");
                     return;
                 }
-                break
+                break;
             default:
                 break;
         }
         setStep(step + 1)
     }
 
+    //display current step fields
     function displayFields() {
         switch (step) {
             case 1:
@@ -98,9 +81,8 @@ export default function Signup(props) {
                 return <Step2 phone={phone} setPhone={setPhone}
                     address={address} setAddress={setAddress} />
             case 3:
-                return <Step3 firstName={firstName} lastName={lastName}
-                    phone={phone} address={address}
-                    confirm={confirm} setConfirm={setConfirm}
+                return <Step3 firstName={firstName} lastName={lastName} phone={phone}
+                    address={address} confirm={confirm} setConfirm={setConfirm}
                 />
             default:
                 return;
@@ -109,26 +91,23 @@ export default function Signup(props) {
 
     function displayProgress() {
         const rows = [];
-        for (let i = 0; i < NUM_OP_PAGES; i++) {
+        for (let i = 1; i <= NUM_OP_PAGES; i++) {
             rows.push(
-            <div className={`circle ${step == i+1 ? 'curr-page' : (step > i+1 ? 'past-page' : 'next-page' )}`} key={i}>
-                {i+1}
-            </div>
+                <div className={`circle ${step == i ? 'curr-page' : (step > i ? 'past-page' : 'next-page')}`} key={i}>
+                    {i}
+                </div>
             );
         }
         return rows;
-
     }
 
     return (
         <div className="signup-con">
             <h1>Sign up</h1>
-            <div className="progress-bar">
-                {displayProgress()}
-            </div>
+            <div className="progress-bar">{displayProgress()}</div>
             {displayFields()}
-            {step > 1 && <button className="back" onClick={() => setStep(step - 1)}>back</button>}
-            <button className="next" onClick={() => handleNext()}>{step == NUM_OP_PAGES ? 'save' : 'next'}</button>
+            {/* back btn */} {step > 1 && <button className="back" onClick={() => setStep(step - 1)}>back</button>}
+            {/* next/save btn */} <button className="next" onClick={() => handleNext()}>{step == NUM_OP_PAGES ? 'save' : 'next'}</button>
         </div>
     );
 }
@@ -167,20 +146,15 @@ function Step2({ phone, setPhone, address, setAddress }) {
 function Step3(props) {
     return (
         <div>
-            <div>
+            <div className="summary">
                 <h3>your details:</h3>
                 <p><b>First name: </b>{props.firstName}</p>
                 <p><b>Last name:</b> {props.lastName}</p>
                 <p><b>Phone: </b>{props.phone}</p>
                 <p><b>Address:</b> {props.address}</p>
             </div>
-            <br />
             <label>
-                <input
-                    type="checkbox"
-                    checked={props.confirm}
-                    onChange={() => props.setConfirm(!props.confirm)}
-                />
+                <input type="checkbox" checked={props.confirm} onChange={() => props.setConfirm(!props.confirm)} />
                 Confirm
             </label>
         </div>

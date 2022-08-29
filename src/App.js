@@ -18,6 +18,7 @@ function App() {
 
   return (
     <div className="App">
+      <img className='bg' src="bg.jpg" width="100%"/>
       <Header />
       <div className='menu-content'>
         <Menu changeScreen={(type)=>changeScreen(type)} screen={screen}/>

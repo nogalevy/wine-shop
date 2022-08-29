@@ -1,13 +1,15 @@
 .menu-con {
-    background-color: #f7f1ee;
+    background-color: #d2cec6;
     display: flex;
     flex-direction: column;
     justify-content: start;
     flex:1;
+    opacity: 75%;
+
 }
 
 .menu-btn{
-    background-color: #f7f1ee;
+    background-color: #d2cec6;
     height: 30%;
     border: 0;
     cursor: pointer;
@@ -15,7 +17,8 @@
 
 
 .menu-btn:hover{
-    background-color: #efe4dc;
+    background-color: #bab5a9;
+    border-radius: 20px 0px 0px 20px;
 }
 
 .menu-btn.disabled{
@@ -24,7 +27,7 @@
 
 
 .menu-btn.active{
-    background-color: #e7d6cb;
+    background-color: #a49d8e;
     border-radius: 20px 0px 0px 20px;
     /* border: 5px solid #519da5; */
     /* border-right: none; */

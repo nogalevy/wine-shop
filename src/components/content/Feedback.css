@@ -1,8 +1,5 @@
 .feedback-con {
-    align-items: center;
-    height: 100%;
-    justify-content: center;
-    display: flex;
+    margin-top: 10px ;
 }
 
 .reset {

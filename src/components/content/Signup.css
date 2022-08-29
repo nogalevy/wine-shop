@@ -1,6 +1,14 @@
+.signup-con{
+    background-color: #f4f3f1;
+    width: fit-content;
+    margin: 20px auto;
+    padding: 10px 40px ;
+    border-radius: 5px;
+}
+
 .input-con{
     width: fit-content;
-    margin: auto
+    margin: auto;
 }
 
 .input-con .text-input{
@@ -20,17 +28,17 @@
     margin: 20px;
     padding: 5px 10px 5px 10px;
     border-radius: 5px;
-    background-color: #f7f1ee;
+    background-color: #c7d1d0;
     color: #110c08;
 }
 
 .back:hover, .next:hover, .save:hover{
-    background-color: #efe4dc ;
+    background-color: #abbab9 ;
     color: #463020;
-    /* border: 1px solid #f4f0ed;
-    margin: 19px */
 }
 
+
+/* PROGRESS BAR */
 .progress-bar{
     display: flex;
     margin: auto;
@@ -44,16 +52,22 @@
     height: 20px;
     border-radius: 50%;
     margin: 5px 20px;
-    background-color: #c9a388;
     padding: 8px;
+    color: #f4f3f1;
 }
 
 .circle.curr-page{
-    background-color: #af7850; 
+    background-color: #667a7f; 
 }
 .circle.past-page{
-    background-color: #835534;
+    background-color: #667a7f;
 }
 .circle.next-page{
-    background-color: #72675f;
+    background-color: #b8c3c6;
+}
+
+.summary p{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
