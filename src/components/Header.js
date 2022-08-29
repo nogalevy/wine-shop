@@ -2,7 +2,7 @@
 // 1. user name / hello
 // 2. title
 // 3. Logo = link to signup screen -
-//          - if user connected link to signup page and log out the connected user
+//    if user connected link to signup page and log out the connected user
 
 import './Header.css';
 import { useDispatch, useSelector } from 'react-redux/es/exports';

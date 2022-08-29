@@ -17,15 +17,15 @@ export default function Menu() {
     return (
         <div className="menu-con">
             <button
-                className={`menu-btn ${screen == SCREEN.SIGNUP && "active"}`}
+                className={`menu-btn ${screen === SCREEN.SIGNUP && "active"}`}
                 onClick={IS_SIGNIN ? ()=> alert('You have already signed in') : () => dispatch(changeScreen(SCREEN.SIGNUP))}>
                 Signup</button>
             <button
-                className={`menu-btn ${screen == SCREEN.SHOPPING && "active"}`}
+                className={`menu-btn ${screen === SCREEN.SHOPPING && "active"}`}
                 onClick={!IS_SIGNIN ? () => alert('Please sign up first') : () => dispatch(changeScreen(SCREEN.SHOPPING))}>
                 Start Shopping</button>
             <button
-                className={`menu-btn ${screen == SCREEN.FEEDBACK && "active"}`}
+                className={`menu-btn ${screen === SCREEN.FEEDBACK && "active"}`}
                 onClick={!IS_SIGNIN ? () => alert('Please sign up first') : () => dispatch(changeScreen(SCREEN.FEEDBACK))}>
                 Feedback</button>
         </div>

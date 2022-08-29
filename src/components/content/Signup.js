@@ -1,3 +1,5 @@
+// signup with wizard form
+
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { saveAll } from "../../actions/userData";
@@ -22,13 +24,13 @@ export default function Signup() {
 
     const dispatch = useDispatch(); //Redux
     const phoneRegex = /^(?:(?:(\+?972|\(\+?972\)|\+?\(972\))(?:\s|\.|-)?([1-9]\d?))|(0[23489]{1})|(0[57]{1}[0-9]))(?:\s|\.|-)?([^0\D]{1}\d{2}(?:\s|\.|-)?\d{4})$/
-    
+
     function validate(type, val) {
         let isValid = false
         switch (type) {
             case INPUT_TYPE.FIRST:
             case INPUT_TYPE.LAST:
-                if (/^[\D/\s/\-]+$/.test(val) && val.length > 1) isValid = true;
+                if (/^[\D/\s/-]+$/.test(val) && val.length > 1) isValid = true;
                 break;
             case INPUT_TYPE.PHONE:
                 if (phoneRegex.test(val)) isValid = true;
@@ -53,7 +55,7 @@ export default function Signup() {
 
     //handle next - when final step = save all
     function handleNext() {
-        if (step == NUM_OP_PAGES) return save();
+        if (step === NUM_OP_PAGES) return save();
         switch (step) {
             case 1:
                 if (!validate(INPUT_TYPE.FIRST, firstName) || !validate(INPUT_TYPE.LAST, lastName)) {
@@ -109,7 +111,7 @@ export default function Signup() {
             <div className="progress-bar">{displayProgress()}</div>
             {displayFields()}
             {step > 1 && <button className="back" onClick={() => setStep(step - 1)}>back</button>}
-            <button className="next" onClick={() => handleNext()}>{step == NUM_OP_PAGES ? 'save' : 'next'}</button>
+            <button className="next" onClick={() => handleNext()}>{step === NUM_OP_PAGES ? 'save' : 'next'}</button>
         </div>
     )
 }

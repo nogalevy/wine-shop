@@ -2,7 +2,7 @@
     background-color: #d2cec6;
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
     flex:1;
     opacity: 75%;
 }
